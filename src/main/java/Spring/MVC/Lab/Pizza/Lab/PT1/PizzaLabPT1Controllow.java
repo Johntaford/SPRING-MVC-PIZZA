@@ -1,5 +1,8 @@
 package Spring.MVC.Lab.Pizza.Lab.PT1;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,6 +54,11 @@ public class PizzaLabPT1Controllow {
 		model.addAttribute("isGlutenFree", isGlutenFree);
 		model.addAttribute("specialInstructions", specialInstructions);
 		model.addAttribute("price", price);
+		
+		
+		 List<String> toppingsChoice = Arrays.asList("Pepperoni", "Sausage", "Mushrooms", "Onions", "Olives", "Green Peppers");
+		    model.addAttribute("toppingsChoice", toppingsChoice);
+		
 		return "form-results";
 	}
 

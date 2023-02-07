@@ -1,36 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Custom Pizza Builder</title>
+	<style>
+		.delivery {
+			color: green;
+			font-size: larger;
+		}
+	</style>
 </head>
 <body>
 	<h1>Custom Pizza Builder</h1>
-	<form action="Pizza-Builder-Results" method="post">
-		<p>
+	<form action="/Pizza-Builder-Results" method="post">
+		<div>
 			<label for="size">Size:</label>
-			<select id="size" name="size">
+			<select name="size">
 				<option value="small">Small</option>
 				<option value="medium">Medium</option>
 				<option value="large">Large</option>
 			</select>
-		</p>
-		<p>
+		</div>
+		<div>
 			<label for="toppings">Number of Toppings:</label>
-			<input type="number" id="toppings" name="toppings">
-		</p>
-		<p>
-			<label for="glutenFree">Gluten-Free Crust:</label>
-			<input type="checkbox" id="glutenFree" name="glutenFree" value="yes">
-		</p>
-		<p>
+			<input type="number" name="toppings" min="0" max="10" required />
+		</div>
+		<div>
+			<label for="glutenFree">Gluten-Free?</label>
+			<input type="radio" name="glutenFree" value="yes" required />Yes
+			<input type="radio" name="glutenFree" value="no" required />No
+		</div>
+		<div>
 			<label for="specialInstructions">Special Instructions:</label>
-			<textarea id="specialInstructions" name="specialInstructions"></textarea>
-		</p>
-		<input type="submit" value="Submit">
+			<textarea name="specialInstructions"></textarea>
+		</div>
+		<c:forEach items="${toppingsList}" var="topping">
+			<li>${topping}</li>
+		</c:forEach>
+		<input type="submit" value="Submit"/>
 	</form>
-	<a href="/">Back to Homepage</a>
 </body>
 </html>
